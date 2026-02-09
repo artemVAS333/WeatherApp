@@ -9,7 +9,9 @@ const BASE_URL = 'https://api.weatherapi.com/v1/current.json'
 
 function App() {
 	const [weatherData, setWeatherData] = useState(null)
-	const [city, setCity] = useState('Chernivtsi')
+	const [city, setCity] = useState(() => {
+		return localStorage.getItem('city') || 'Chernivtsi'
+	})
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 
@@ -36,6 +38,10 @@ function App() {
 
 	useEffect(() => {
 		fetchWeatherData(city)
+	}, [city])
+
+	useEffect(() => {
+		localStorage.setItem('city', city)
 	}, [city])
 
 	return (
