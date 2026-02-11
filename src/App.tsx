@@ -8,15 +8,35 @@ import AddToFavoritesButton from './components/AddToFavoritesButton'
 
 import { useWeather } from './hooks/useWeather'
 
-function App() {
-	const [city, setCity] = useState(() => {
-		return localStorage.getItem('city') || 'Chernivtsi'
-	})
+import { fetchCityByIP } from './api/location'
 
-	const { weatherData, loading, error } = useWeather(city)
+function App() {
+	const [city, setCity] = useState<string | null>(() => localStorage.getItem('city'))
+	const [ready, setReady] = useState(false)
 
 	useEffect(() => {
-		localStorage.setItem('city', city)
+		const fetchCity = async () => {
+			if (!city) {
+				try {
+					const data = await fetchCityByIP()
+					setCity(data.city || 'London')
+				} catch (err) {
+					console.error(err)
+					setCity('London')
+				}
+			}
+			setReady(true)
+		}
+
+		fetchCity()
+	}, [city])
+
+	const { weatherData, loading, error } = useWeather(ready && city ? city : null)
+
+	useEffect(() => {
+		if (city) {
+			localStorage.setItem('city', city)
+		}
 	}, [city])
 
 	return (

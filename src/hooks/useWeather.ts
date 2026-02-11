@@ -4,12 +4,13 @@ import type { WeatherData } from '../types/weather'
 
 import { fetchCurrentWeather } from '../api/weather'
 
-export const useWeather = (city: string) => {
+export const useWeather = (city: string | null) => {
 	const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
 	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
 
-	const fetchWeatherData = async (cityName: string) => {
+	const fetchWeatherData = async (cityName?: string) => {
+		if (!cityName) return
 		try {
 			setError(null)
 			setLoading(true)
@@ -26,6 +27,7 @@ export const useWeather = (city: string) => {
 	}
 
 	useEffect(() => {
+		if (!city) return
 		fetchWeatherData(city)
 	}, [city])
 
