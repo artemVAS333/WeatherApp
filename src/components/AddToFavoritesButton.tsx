@@ -1,10 +1,10 @@
 import { useFavoritesContext } from '../contexts/FavoritesContext'
 
-interface Props {
+interface AddToFavoritesButtonProps {
 	city: string
 }
 
-const AddToFavoritesButton = ({ city }: Props) => {
+const AddToFavoritesButton = ({ city }: AddToFavoritesButtonProps) => {
 	const { addToFavorites } = useFavoritesContext()
 
 	return <button onClick={() => addToFavorites(city)}>Add to favorites</button>
