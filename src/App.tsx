@@ -41,8 +41,8 @@ function App() {
 
 	return (
 		<>
-			{loading && <p>Loading...</p>}
-			{error && <p>{error}</p>}
+			{loading && <output>Loading...</output>}
+			{error && <p role="alert">{error}</p>}
 			<SearchCity onSearch={setCity} />
 			<FavoriteList onSelect={setCity} />
 			{!loading && weatherData && <WeatherCard city={weatherData.location.name} temperature={Math.round(weatherData.current.temp_c)} weather={weatherData.current.condition.text} />}

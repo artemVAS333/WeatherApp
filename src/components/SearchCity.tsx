@@ -14,8 +14,11 @@ const SearchCity = ({ onSearch }: SearchCityProps) => {
 
 	return (
 		<div>
-			<input type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} placeholder="Enter city name" />
-			<button onClick={handleSearch}>Search</button>
+			<label htmlFor="city-search">Enter city name</label>
+			<input id="city-search" type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} placeholder="Enter city name" />
+			<button onClick={handleSearch} aria-label={`Search for city ${cityName || 'city'}`}>
+				Search
+			</button>
 		</div>
 	)
 }

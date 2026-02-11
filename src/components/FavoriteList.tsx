@@ -13,7 +13,9 @@ const FavoriteList = ({ onSelect }: FavoriteListProps) => {
 		<ul>
 			{favorites.map((city) => (
 				<li key={city}>
-					<button onClick={() => onSelect(city)}>{city}</button>
+					<button onClick={() => onSelect(city)} aria-label={`Select ${city} as city`}>
+						{city}
+					</button>
 
 					{confirmCity === city ?
 						<>

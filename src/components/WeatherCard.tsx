@@ -6,11 +6,12 @@ interface WeatherCardProps {
 
 const WeatherCard = ({ city, temperature, weather }: WeatherCardProps) => {
 	return (
-		<>
-			<div>{city}</div>
-			<div>{temperature} °C</div>
-			<div>{weather}</div>
-		</>
+		<section aria-labelledby="weather-today">
+			<h2 id="weather-today">Weather in {city}</h2>
+			<p>
+				{temperature}°C, {weather}
+			</p>
+		</section>
 	)
 }
 
