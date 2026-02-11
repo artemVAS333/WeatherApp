@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import { resources } from './locales/translations'
+import { resources, namespaces, defaultNS } from './locales/translations'
 
 const savedLanguage = localStorage.getItem('language') || 'en'
 
@@ -13,7 +13,8 @@ i18n
 		// you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
 		// if you're using a language detector, do not define the lng option
 
-		ns: ['common'], // name spaces, more information here: https://www.i18next.com/overview/configuration-options#namespaces
+		ns: namespaces, // name spaces, more information here: https://www.i18next.com/overview/configuration-options#namespaces
+		defaultNS: defaultNS,
 
 		interpolation: {
 			escapeValue: false, // react already safes from xss

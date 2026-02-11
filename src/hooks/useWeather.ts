@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import type { WeatherData } from '../types/weather'
+import { WeatherError } from '../errors/WeatherError'
 
 import { fetchCurrentWeather } from '../api/weather'
 
@@ -18,7 +19,7 @@ export const useWeather = (city: string | null) => {
 			const data = await fetchCurrentWeather(cityName)
 			setWeatherData(data)
 		} catch (err) {
-			setError('Failed to fetch weather data')
+			setError(WeatherError.CITY_NOT_FOUND)
 			setWeatherData(null)
 			console.error(err)
 		} finally {

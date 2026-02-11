@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next'
 
 import LanguageSwitcher from './components/LanguageSwitcher'
 
+import Loading from './components/Loading'
+import ErrorMessage from './components/ErrorMessage'
+
 import SearchCity from './components/SearchCity'
 import WeatherCard from './components/WeatherCard'
 import FavoriteList from './components/FavoriteList'
@@ -47,10 +50,9 @@ function App() {
 
 	return (
 		<>
-			<p>{t('Welcome to React')}</p>
 			<LanguageSwitcher />
-			{loading && <output>Loading...</output>}
-			{error && <p role="alert">{error}</p>}
+			{loading && <Loading text={`${t('loading')}...`} />}
+			{error && <ErrorMessage message={error} />}
 			<SearchCity onSearch={setCity} />
 			<FavoriteList onSelect={setCity} />
 			{!loading && weatherData && <WeatherCard city={weatherData.location.name} temperature={Math.round(weatherData.current.temp_c)} weather={weatherData.current.condition.text} />}

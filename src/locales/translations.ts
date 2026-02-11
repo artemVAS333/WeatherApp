@@ -1,5 +1,11 @@
 import enCommon from './en/common.json'
+import enErrors from './en/errors.json'
+
 import ukCommon from './uk/common.json'
+import ukErrors from './uk/errors.json'
+
+export const namespaces = ['common', 'errors']
+export const defaultNS = 'common'
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -7,8 +13,10 @@ import ukCommon from './uk/common.json'
 export const resources = {
 	en: {
 		common: enCommon,
+		errors: enErrors,
 	},
 	uk: {
 		common: ukCommon,
+		errors: ukErrors,
 	},
 }
