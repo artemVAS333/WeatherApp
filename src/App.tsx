@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+import { useTranslation } from 'react-i18next'
+
+import LanguageSwitcher from './components/LanguageSwitcher'
+
 import SearchCity from './components/SearchCity'
 import WeatherCard from './components/WeatherCard'
 import FavoriteList from './components/FavoriteList'
@@ -11,6 +15,8 @@ import { useWeather } from './hooks/useWeather'
 import { fetchCityByIP } from './api/location'
 
 function App() {
+	const { t } = useTranslation()
+
 	const [city, setCity] = useState<string | null>(() => localStorage.getItem('city'))
 	const [ready, setReady] = useState(false)
 
@@ -41,6 +47,8 @@ function App() {
 
 	return (
 		<>
+			<p>{t('Welcome to React')}</p>
+			<LanguageSwitcher />
 			{loading && <output>Loading...</output>}
 			{error && <p role="alert">{error}</p>}
 			<SearchCity onSearch={setCity} />
