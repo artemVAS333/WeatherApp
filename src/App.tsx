@@ -25,8 +25,8 @@ function App() {
 			{error && <p>{error}</p>}
 			<SearchCity onSearch={setCity} />
 			<FavoriteList onSelect={setCity} />
-			{weatherData && !loading && <WeatherCard city={weatherData.location.name} temperature={Math.round(weatherData.current.temp_c)} weather={weatherData.current.condition.text} />}
-			<AddToFavoritesButton city={weatherData?.location.name} />
+			{!loading && weatherData && <WeatherCard city={weatherData.location.name} temperature={Math.round(weatherData.current.temp_c)} weather={weatherData.current.condition.text} />}
+			{weatherData && <AddToFavoritesButton city={weatherData.location.name} />}
 		</>
 	)
 }

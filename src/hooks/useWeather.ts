@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 
+import type { WeatherData } from '../types/weather'
+
 const API_KEY = '62e333b4e97948c48c3141029260602'
 const BASE_URL = 'https://api.weatherapi.com/v1/current.json'
 
 export const useWeather = (city: string) => {
-	const [weatherData, setWeatherData] = useState(null)
-	const [error, setError] = useState(null)
+	const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
+	const [error, setError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
 
 	const fetchWeatherData = async (cityName: string) => {
