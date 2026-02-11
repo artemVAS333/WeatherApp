@@ -9,10 +9,15 @@ const LanguageSwitcher = () => {
 	}
 
 	return (
-		<div>
-			<button onClick={() => changeLanguage('en')}>English</button>
-			<button onClick={() => changeLanguage('uk')}>Українська</button>
-		</div>
+		<>
+			<label htmlFor="language-select" className="sr-only">
+				Choose language
+			</label>
+			<select id="language-select" onChange={(e) => changeLanguage(e.target.value)} value={i18n.language}>
+				<option value="en">English</option>
+				<option value="uk">Українська</option>
+			</select>
+		</>
 	)
 }
 
