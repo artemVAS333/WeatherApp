@@ -1,10 +1,14 @@
 import { useState } from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 interface SearchCityProps {
 	onSearch: (city: string) => void
 }
 
 const SearchCity = ({ onSearch }: SearchCityProps) => {
+	const { t } = useTranslation('common')
+
 	const [cityName, setCityName] = useState('')
 
 	const handleSearch = () => {
@@ -14,10 +18,10 @@ const SearchCity = ({ onSearch }: SearchCityProps) => {
 
 	return (
 		<div>
-			<label htmlFor="city-search">Enter city name</label>
-			<input id="city-search" type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} placeholder="Enter city name" />
+			<label htmlFor="city-search">{t('enter_city_name')}</label>
+			<input id="city-search" type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} placeholder={t('enter_city_name')} />
 			<button onClick={handleSearch} aria-label={`Search for city ${cityName || 'city'}`}>
-				Search
+				{t('search')}
 			</button>
 		</div>
 	)

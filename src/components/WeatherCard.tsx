@@ -1,16 +1,18 @@
+import { useTranslation } from 'react-i18next'
+
+import type { WeatherData } from '../types/weather'
+
 interface WeatherCardProps {
-	city: string
-	temperature: number
-	weather: string
+	weatherData: WeatherData
 }
 
-const WeatherCard = ({ city, temperature, weather }: WeatherCardProps) => {
+const WeatherCard = ({ weatherData }: WeatherCardProps) => {
+	const { t } = useTranslation('weather')
 	return (
 		<section aria-labelledby="weather-today">
-			<h2 id="weather-today">Weather in {city}</h2>
-			<p>
-				{temperature}°C, {weather}
-			</p>
+			<h2 id="weather-today">{weatherData.location.name}</h2>
+			<p>{Math.round(weatherData.current.temp_c)}°C,</p>
+			<p>{t(weatherData.current.condition.code.toString())}</p>
 		</section>
 	)
 }

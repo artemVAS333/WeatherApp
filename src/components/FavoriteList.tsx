@@ -1,11 +1,15 @@
 import { useFavoritesContext } from '../contexts/FavoritesContext'
 import { useState } from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 interface FavoriteListProps {
 	onSelect: (city: string) => void
 }
 
 const FavoriteList = ({ onSelect }: FavoriteListProps) => {
+	const { t } = useTranslation('common')
+
 	const { favorites, removeFromFavorites } = useFavoritesContext()
 	const [confirmCity, setConfirmCity] = useState<string | null>(null)
 
@@ -24,11 +28,11 @@ const FavoriteList = ({ onSelect }: FavoriteListProps) => {
 									removeFromFavorites(city)
 									setConfirmCity(null)
 								}}>
-								Confirm
+								{t('button.confirm')}
 							</button>
-							<button onClick={() => setConfirmCity(null)}>Cancel</button>
+							<button onClick={() => setConfirmCity(null)}>{t('button.cancel')}</button>
 						</>
-					:	<button onClick={() => setConfirmCity(city)}>Remove</button>}
+					:	<button onClick={() => setConfirmCity(city)}>{t('button.cancel')}</button>}
 				</li>
 			))}
 		</ul>
