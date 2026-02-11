@@ -6,6 +6,7 @@ export interface WeatherData {
 		temp_c: number
 		condition: {
 			text: string
+			code: number
 		}
 	}
 }
