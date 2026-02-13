@@ -9,7 +9,7 @@ const LanguageSwitcher = () => {
 	const { language, changeLanguage } = useSettingsContext()
 
 	return (
-		<>
+		<div style={{ display: 'flex' }}>
 			<label htmlFor="language-select" className="sr-only">
 				{t('choose_language')}
 			</label>
@@ -17,7 +17,7 @@ const LanguageSwitcher = () => {
 				<option value="en">English</option>
 				<option value="uk">Українська</option>
 			</select>
-		</>
+		</div>
 	)
 }
 

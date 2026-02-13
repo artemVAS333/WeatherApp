@@ -15,7 +15,6 @@ import Forecast from '../components/Forecast'
 import FavoriteList from '../components/FavoriteList'
 import AddToFavoritesButton from '../components/AddToFavoritesButton'
 
-import { useWeather } from '../hooks/useWeather'
 import { useForecast } from '../hooks/useForecast'
 
 import { WeatherAPI } from '../api/weather'
@@ -45,24 +44,20 @@ function App() {
 		fetchCity()
 	}, [city])
 
-	const { data: weatherData, loading, error } = useWeather(ready && city ? city : undefined)
-	const { data: forecastData } = useForecast(ready && city ? city : undefined)
+	const { data: forecastData, loading, error } = useForecast(ready && city ? city : undefined)
 
-	useEffect(() => {
-		if (weatherData) {
-			localStorage.setItem('city', weatherData.location.name)
-		}
-	}, [weatherData])
+	if (loading) {
+		return <Loading text={`${t('loading')}...`} />
+	}
 
 	return (
 		<>
 			<Settings />
-			{loading && <Loading text={`${t('loading')}...`} />}
 			{error && <ErrorMessage message={error} />}
 			<SearchCity onSearch={setCity} />
 			<FavoriteList onSelect={setCity} />
-			{!loading && weatherData && <WeatherCard weatherData={weatherData} />}
-			{weatherData && <AddToFavoritesButton city={weatherData.location.name} />}
+			{forecastData && <WeatherCard weatherData={forecastData} />}
+			{forecastData && <AddToFavoritesButton city={forecastData.location.name} />}
 			{forecastData && <TodayHourly forecastData={forecastData} />}
 			{forecastData && <Forecast forecastData={forecastData} />}
 		</>

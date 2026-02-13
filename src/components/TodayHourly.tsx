@@ -6,7 +6,8 @@ type ForecastProps = {
 }
 
 const TodayHourly = ({ forecastData }: ForecastProps) => {
-	const { temperatureUnit, timeFormat } = useSettingsContext()
+	const { temperatureUnit } = useSettingsContext()
+	// const { temperatureUnit, timeFormat } = useSettingsContext()
 
 	return (
 		<section aria-labelledby="forecast" style={{ display: 'flex', gap: '1rem', width: '400px', overflowX: 'scroll' }}>
