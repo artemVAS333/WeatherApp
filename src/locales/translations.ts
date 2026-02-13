@@ -6,9 +6,7 @@ import ukCommon from './uk/common.json'
 import ukErrors from './uk/errors.json'
 import ukWeekDay from './uk/week-day.json'
 
-import { enWeather, ukWeather } from './condition/condition'
-
-export const namespaces = ['common', 'errors', 'weather']
+export const namespaces = ['common', 'errors', 'weather', 'weekDay']
 export const defaultNS = 'common'
 
 // the translations
@@ -18,13 +16,11 @@ export const resources = {
 	en: {
 		common: enCommon,
 		errors: enErrors,
-		weather: enWeather,
 		weekDay: enWeekDay,
 	},
 	uk: {
 		common: ukCommon,
 		errors: ukErrors,
-		weather: ukWeather,
 		weekDay: ukWeekDay,
 	},
 }
