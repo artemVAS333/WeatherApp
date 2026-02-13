@@ -32,7 +32,7 @@ const FavoriteList = ({ onSelect }: FavoriteListProps) => {
 							</button>
 							<button onClick={() => setConfirmCity(null)}>{t('button.cancel')}</button>
 						</>
-					:	<button onClick={() => setConfirmCity(city)}>{t('button.cancel')}</button>}
+					:	<button onClick={() => setConfirmCity(city)}>{t('button.remove')}</button>}
 				</li>
 			))}
 		</ul>

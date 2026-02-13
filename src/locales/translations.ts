@@ -1,8 +1,10 @@
 import enCommon from './en/common.json'
 import enErrors from './en/errors.json'
+import enWeekDay from './en/week-day.json'
 
 import ukCommon from './uk/common.json'
 import ukErrors from './uk/errors.json'
+import ukWeekDay from './uk/week-day.json'
 
 import { enWeather, ukWeather } from './condition/condition'
 
@@ -17,10 +19,12 @@ export const resources = {
 		common: enCommon,
 		errors: enErrors,
 		weather: enWeather,
+		weekDay: enWeekDay,
 	},
 	uk: {
 		common: ukCommon,
 		errors: ukErrors,
 		weather: ukWeather,
+		weekDay: ukWeekDay,
 	},
 }
