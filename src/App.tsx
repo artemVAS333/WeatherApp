@@ -17,7 +17,7 @@ import AddToFavoritesButton from './components/AddToFavoritesButton'
 import { useWeather } from './hooks/useWeather'
 import { useForecast } from './hooks/useForecast'
 
-import { fetchCityByIP } from './api/location'
+import { WeatherAPI } from './api/weather'
 
 function App() {
 	const { t } = useTranslation()
@@ -29,7 +29,9 @@ function App() {
 		const fetchCity = async () => {
 			if (!city) {
 				try {
-					const data = await fetchCityByIP()
+					const api = new WeatherAPI()
+
+					const data = await api.getIP()
 					setCity(data.city || 'London')
 				} catch (err) {
 					console.warn('Failed to fetch city by IP, using default city', err)

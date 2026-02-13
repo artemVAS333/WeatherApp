@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import type { WeatherData } from '../types/weather'
 import { WeatherError } from '../errors/WeatherError'
 
-import { fetchCurrentWeather } from '../api/weather'
+import { WeatherAPI } from '../api/weather'
 
 export const useWeather = (city: string | null) => {
 	const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
@@ -13,10 +13,12 @@ export const useWeather = (city: string | null) => {
 	const fetchWeatherData = async (cityName?: string) => {
 		if (!cityName) return
 		try {
+			const api = new WeatherAPI()
+
 			setError(null)
 			setLoading(true)
 
-			const data = await fetchCurrentWeather(cityName)
+			const data = await api.getCurrentWeather(cityName)
 			setWeatherData(data)
 		} catch (err) {
 			setError(WeatherError.CITY_NOT_FOUND)
