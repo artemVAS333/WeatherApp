@@ -45,8 +45,8 @@ function App() {
 		fetchCity()
 	}, [city])
 
-	const { weatherData, loading, error } = useWeather(ready && city ? city : null)
-	const { forecastData } = useForecast(ready && city ? city : null)
+	const { data: weatherData, loading, error } = useWeather(ready && city ? city : undefined)
+	const { data: forecastData } = useForecast(ready && city ? city : undefined)
 
 	useEffect(() => {
 		if (weatherData) {
