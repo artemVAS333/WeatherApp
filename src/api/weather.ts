@@ -3,7 +3,6 @@ import type { WeatherData, ForecastWeaterData } from '../types/weather'
 import type { LocationData } from '../types/location'
 
 import { AppError } from '../errors/AppError'
-import { WeatherError } from '../errors/WeatherError'
 
 export class WeatherAPI {
 	private readonly apiKey: string
@@ -19,11 +18,11 @@ export class WeatherAPI {
 		if (!res.ok) {
 			switch (res.status) {
 				case 400:
-					throw new AppError(WeatherError.CITY_NOT_FOUND)
+					throw new AppError('Bad request')
 				case 401:
-					throw new AppError(WeatherError.UNKNOWN_ERROR)
+					throw new AppError('Unauthorized')
 				case 403:
-					throw new AppError(WeatherError.UNKNOWN_ERROR)
+					throw new AppError('Forbidden')
 			}
 		}
 		return res

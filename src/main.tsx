@@ -5,12 +5,15 @@ import { loadWeatherConditions } from './i18n/i18n.ts'
 import App from './app/App.tsx'
 
 import { FavoritesProvider } from './contexts/FavoritesProvider'
+import { SettingsProvider } from './contexts/SettingsProvider'
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<FavoritesProvider>
-			<App />
-		</FavoritesProvider>
+		<SettingsProvider>
+			<FavoritesProvider>
+				<App />
+			</FavoritesProvider>
+		</SettingsProvider>
 	</StrictMode>,
 )
 

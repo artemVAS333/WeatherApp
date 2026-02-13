@@ -3,7 +3,7 @@ import './App.css'
 
 import { useTranslation } from 'react-i18next'
 
-import LanguageSwitcher from '../components/LanguageSwitcher'
+import Settings from '../components/Settings'
 
 import Loading from '../components/Loading'
 import ErrorMessage from '../components/ErrorMessage'
@@ -56,7 +56,7 @@ function App() {
 
 	return (
 		<>
-			<LanguageSwitcher />
+			<Settings />
 			{loading && <Loading text={`${t('loading')}...`} />}
 			{error && <ErrorMessage message={error} />}
 			<SearchCity onSearch={setCity} />

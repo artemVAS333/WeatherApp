@@ -1,5 +1,7 @@
 import type { ForecastWeaterData } from '../types/weather'
 
+import { useSettingsContext } from '../contexts/SettingsContext'
+
 import { useTranslation } from 'react-i18next'
 
 type ForecastProps = {
@@ -8,6 +10,8 @@ type ForecastProps = {
 
 const Forecast = ({ forecastData }: ForecastProps) => {
 	const { t } = useTranslation('weekDay')
+
+	const { temperatureUnit } = useSettingsContext()
 
 	const dateToDay = (date: string) => {
 		const day = new Date(date).getDay()
@@ -20,8 +24,12 @@ const Forecast = ({ forecastData }: ForecastProps) => {
 			{forecastData.forecast.forecastday.map((day) => (
 				<div key={day.date}>
 					<h3>{t(`days.short.${dateToDay(day.date)}`)}</h3>
-					<p>{Math.round(day.day.maxtemp_c)}°C</p>
-					<p>{Math.round(day.day.mintemp_c)}°C</p>
+					<p>
+						{Math.round(temperatureUnit === 'C' ? day.day.maxtemp_c : day.day.maxtemp_f)}°{temperatureUnit}
+					</p>
+					<p>
+						{Math.round(temperatureUnit === 'C' ? day.day.mintemp_c : day.day.mintemp_f)}°{temperatureUnit}
+					</p>
 				</div>
 			))}
 		</section>

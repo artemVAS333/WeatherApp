@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
-export const useAsincData = <T>(fetcher: (() => Promise<T>) | null) => {
-	const [data, setData] = useState<T | null>(null)
-	const [error, setError] = useState<string | null>(null)
+export const useAsincData = <TData, TError>(fetcher: (() => Promise<TData>) | null, errorMessage: TError) => {
+	const [data, setData] = useState<TData | null>(null)
+	const [error, setError] = useState<TError | null>(null)
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ export const useAsincData = <T>(fetcher: (() => Promise<T>) | null) => {
 				const data = await fetcher()
 				setData(data)
 			} catch (err) {
-				setError('Failed to fetch data')
+				setError(errorMessage)
 				setData(null)
 				console.error(err)
 			} finally {
@@ -24,7 +24,7 @@ export const useAsincData = <T>(fetcher: (() => Promise<T>) | null) => {
 		}
 
 		fetchData()
-	}, [fetcher])
+	}, [fetcher, errorMessage])
 
 	return { data, error, loading }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { FavoritesContext } from './FavoritesContext'
 
 export const FavoritesProvider = ({ children }: { children: React.ReactNode }) => {
@@ -7,19 +7,32 @@ export const FavoritesProvider = ({ children }: { children: React.ReactNode }) =
 		return storedFavorites ? JSON.parse(storedFavorites) : []
 	})
 
-	const addToFavorites = (city: string) => {
-		if (!favorites.includes(city)) {
-			setFavorites([...favorites, city])
-		}
-	}
+	const addToFavorites = useCallback((city: string) => {
+		setFavorites((prev) => {
+			if (!prev.includes(city)) {
+				return [...prev, city]
+			}
+			return prev
+		})
+	}, [])
 
-	const removeFromFavorites = (city: string) => {
-		setFavorites(favorites.filter((favorite) => favorite !== city))
-	}
+	const removeFromFavorites = useCallback((city: string) => {
+		setFavorites((prev) => {
+			return prev.filter((favorite) => favorite !== city)
+		})
+	}, [])
 
 	useEffect(() => {
 		localStorage.setItem('favorites', JSON.stringify(favorites))
 	}, [favorites])
 
-	return <FavoritesContext.Provider value={{ favorites, addToFavorites, removeFromFavorites }}> {children} </FavoritesContext.Provider>
+	const value = useMemo(() => {
+		return {
+			favorites,
+			addToFavorites,
+			removeFromFavorites,
+		}
+	}, [favorites, addToFavorites, removeFromFavorites])
+
+	return <FavoritesContext.Provider value={value}> {children} </FavoritesContext.Provider>
 }
