@@ -1,10 +1,10 @@
-import enCommon from './en/common.json'
-import enErrors from './en/errors.json'
-import enWeekDay from './en/week-day.json'
+import enCommon from '../locales/en/common.json'
+import enErrors from '../locales/en/errors.json'
+import enWeekDay from '../locales/en/week-day.json'
 
-import ukCommon from './uk/common.json'
-import ukErrors from './uk/errors.json'
-import ukWeekDay from './uk/week-day.json'
+import ukCommon from '../locales/uk/common.json'
+import ukErrors from '../locales/uk/errors.json'
+import ukWeekDay from '../locales/uk/week-day.json'
 
 export const namespaces = ['common', 'errors', 'weather', 'weekDay']
 export const defaultNS = 'common'

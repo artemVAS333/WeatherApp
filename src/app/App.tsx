@@ -3,22 +3,22 @@ import './App.css'
 
 import { useTranslation } from 'react-i18next'
 
-import LanguageSwitcher from './components/LanguageSwitcher'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
-import Loading from './components/Loading'
-import ErrorMessage from './components/ErrorMessage'
+import Loading from '../components/Loading'
+import ErrorMessage from '../components/ErrorMessage'
 
-import SearchCity from './components/SearchCity'
-import WeatherCard from './components/WeatherCard'
-import TodayHourly from './components/TodayHourly'
-import Forecast from './components/Forecast'
-import FavoriteList from './components/FavoriteList'
-import AddToFavoritesButton from './components/AddToFavoritesButton'
+import SearchCity from '../components/SearchCity'
+import WeatherCard from '../components/WeatherCard'
+import TodayHourly from '../components/TodayHourly'
+import Forecast from '../components/Forecast'
+import FavoriteList from '../components/FavoriteList'
+import AddToFavoritesButton from '../components/AddToFavoritesButton'
 
-import { useWeather } from './hooks/useWeather'
-import { useForecast } from './hooks/useForecast'
+import { useWeather } from '../hooks/useWeather'
+import { useForecast } from '../hooks/useForecast'
 
-import { WeatherAPI } from './api/weather'
+import { WeatherAPI } from '../api/weather'
 
 function App() {
 	const { t } = useTranslation()
@@ -49,10 +49,10 @@ function App() {
 	const { forecastData } = useForecast(ready && city ? city : null)
 
 	useEffect(() => {
-		if (city) {
-			localStorage.setItem('city', city)
+		if (weatherData) {
+			localStorage.setItem('city', weatherData.location.name)
 		}
-	}, [city])
+	}, [weatherData])
 
 	return (
 		<>

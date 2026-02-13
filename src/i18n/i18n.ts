@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import { resources, namespaces, defaultNS } from './locales/translations'
+import { resources, namespaces, defaultNS } from './translations'
 
 const browserLanguage = navigator.language.slice(0, 2)
 const savedLanguage = localStorage.getItem('language')
