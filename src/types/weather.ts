@@ -24,6 +24,10 @@ export interface ForecastWeaterData {
 				mintemp_c: number
 				avgtemp_c: number
 			}
+			hour: {
+				time: string
+				temp_c: number
+			}[]
 		}[]
 	}
 }
