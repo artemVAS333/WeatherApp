@@ -10,10 +10,12 @@ import ErrorMessage from './components/ErrorMessage'
 
 import SearchCity from './components/SearchCity'
 import WeatherCard from './components/WeatherCard'
+import Forecast from './components/Forecast'
 import FavoriteList from './components/FavoriteList'
 import AddToFavoritesButton from './components/AddToFavoritesButton'
 
 import { useWeather } from './hooks/useWeather'
+import { useForecast } from './hooks/useForecast'
 
 import { fetchCityByIP } from './api/location'
 
@@ -41,6 +43,7 @@ function App() {
 	}, [city])
 
 	const { weatherData, loading, error } = useWeather(ready && city ? city : null)
+	const { forecastData } = useForecast(ready && city ? city : null)
 
 	useEffect(() => {
 		if (city) {
@@ -57,6 +60,7 @@ function App() {
 			<FavoriteList onSelect={setCity} />
 			{!loading && weatherData && <WeatherCard weatherData={weatherData} />}
 			{weatherData && <AddToFavoritesButton city={weatherData.location.name} />}
+			{weatherData && <Forecast forecastData={forecastData} />}
 		</>
 	)
 }
