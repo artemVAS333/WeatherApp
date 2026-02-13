@@ -30,7 +30,7 @@ function App() {
 					const data = await fetchCityByIP()
 					setCity(data.city || 'London')
 				} catch (err) {
-					console.error(err)
+					console.warn('Failed to fetch city by IP, using default city', err)
 					setCity('London')
 				}
 			}

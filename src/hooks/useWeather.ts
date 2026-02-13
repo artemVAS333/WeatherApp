@@ -17,6 +17,7 @@ export const useWeather = (city: string | null) => {
 			setLoading(true)
 
 			const data = await fetchCurrentWeather(cityName)
+			console.log(data)
 			setWeatherData(data)
 		} catch (err) {
 			setError(WeatherError.CITY_NOT_FOUND)
