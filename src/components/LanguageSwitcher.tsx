@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 const LanguageSwitcher = () => {
-	const { i18n } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	const changeLanguage = (lng: string) => {
 		i18n.changeLanguage(lng)
@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
 	return (
 		<>
 			<label htmlFor="language-select" className="sr-only">
-				Choose language
+				{t('choose_language')}
 			</label>
 			<select id="language-select" onChange={(e) => changeLanguage(e.target.value)} value={i18n.language}>
 				<option value="en">English</option>

@@ -60,7 +60,7 @@ function App() {
 			<FavoriteList onSelect={setCity} />
 			{!loading && weatherData && <WeatherCard weatherData={weatherData} />}
 			{weatherData && <AddToFavoritesButton city={weatherData.location.name} />}
-			{weatherData && <Forecast forecastData={forecastData} />}
+			{forecastData && <Forecast forecastData={forecastData} />}
 		</>
 	)
 }
